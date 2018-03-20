@@ -10,9 +10,9 @@ namespace DTSclient
 {
     public class DBHelper
     {
-        //创建连接数据库字符串Data Source=123.207.156.38;Initial Catalog=gzmtest;User ID=sa;Password=Bipt08200820";
-        //private string connString = "Data Source=123.207.156.38;Initial Catalog=JFPTC;User ID=GZptc2017;Password=GZ2017ptc0820";
-        private string connString = "Data Source=47.94.96.25;Initial Catalog=JFPTC;User ID=sa;Password=20120607";
+        //创建连接数据库字符串Data Source=#########;Initial Catalog=#####;User ID=###;Password=########";
+        //private string connString = "Data Source=######;Initial Catalog=JFPTC;User ID=GZptc2017;Password=#####";
+        private string connString = "Data Source=######3;Initial Catalog=JFPTC;User ID=sa;Password=20120607";
         //private string connString = "Data Source=DESKTOP-A8ESEHG\\SQLEXPRESS;Initial Catalog=gzmtest20161227;User ID=sa;Password=666666";
         private SqlConnection connection;
         public SqlConnection Connection
