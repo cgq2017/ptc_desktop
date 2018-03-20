@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+
+<link href="css/zzsc.css" rel="stylesheet">
+<style type="text/css">
+body,html,div,ul,li,a{
+	margin:0;
+	padding:0;
+	}
+body,html{
+	margin:0; padding:0;
+	height:100%;
+	width:100%;
+	font-family:"微软雅黑"
+	}
+body{
+	text-align:center;
+	background:#A69D9D;
+	}
+.imagebox{
+	width:1200px;
+	height:600px;
+	margin:2px 2px 2px 2px;
+   	position:relative;
+
+	}
+    .imagebox img {
+        width: 1200px;
+        height: 600px;
+    }
+</style>
+
+</head>
+<body>
+<div class="imagebox" id="signx">
+	<img src="image/jinfeng.jpg" >
+    
+</div>
+    <div width="10px" height="0px" hidden="">
+        <img id='imep' src='image/s5.jpg' width="180" height="120" /> 
+        <img id='imst' src='image/s6.jpg' width="180" height="120" />
+        <img id='imdm' src='image/s2.jpg' width="180" height="120" />
+        <img id='imsmc' src='image/s4.jpg' width="180" height="120" />
+        <img id='immp' src='image/s1.jpg' width="180" height="120" />
+        <img id='imrain' src='image/s3.jpg' width="180" height="120" />
+        <img id='imhum' src='image/s3.jpg' width="180" height="120" />
+        <img id='imtmp' src='image/s3.jpg' width="180" height="120" />
+    </div>
+    <!--<img src="image/s1.jpg" name="myImage" width=50 height=50>-->  
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-sign.mini.js"></script>
+<script>
+    var m = [];//站点号
+    var a = [], b = [], c = [], c1 = [], c2 = [], d = []
+    e = [], e1 = [], e2 = [], f = [], g = [], h = [], a1 = [], b1 = [], d1=[],e3=[],f1=[],g1=[],h1=[];
+    $.ajax({
+        type: "post",
+        async: false, //同步执行
+        url: "../Ajax/Tempmonitor.aspx?type=getData&count=3",
+        dataType: "json", //返回数据形式为json
+        success: function (result) {
+            if (result) {
+                a = result.series0;
+                b = result.series1;
+                c = result.series2;
+                c1 = result.series21;
+                c2 = result.series22;
+                d = result.series3;
+                e= result.series4;
+                e1 = result.series41;
+                e2 = result.series42;
+                e3 = result.series43;
+                f = result.series5;
+                g = result.series6;
+                h = result.series7;
+                a1 = result.series01;
+                b1 = result.series11;
+                d1 = result.series31;
+                f1 = result.series51;
+                g1 = result.series61;
+                h1 = result.series71;
+                m = result.series02;
+              
+
+            }
+        },
+        error: function (errorMsg) {
+            alert("请求数据失败!");
+        }
+    });
+        var Dm = Math.sqrt(c[0].value * c[0].value + c1[0].value * c1[0].value);
+        var Mp = Math.sqrt(e[0].value * e[0].value + e1[0].value * e1[0].value + e2[0].value * e2[0].value);
+        var imep = document.getElementById('imep').outerHTML;
+        var imst = document.getElementById('imst').outerHTML;
+        var imdm = document.getElementById('imdm').outerHTML;
+        var imsmc = document.getElementById('imsmc').outerHTML;
+        var immp = document.getElementById('immp').outerHTML;
+        var imhum = document.getElementById('imhum').outerHTML;
+        var imrain = document.getElementById('imrain').outerHTML;
+        var imtmp = document.getElementById('imtmp').outerHTML;
+        $.sign.bindSign('#signx');//初始化
+        var data = [{ left: 270, top: 387, message: "传感器类型：土压力" + "<br>时间:" + b1[0].sm + "<br>土压力：" + b[0].value + "<br>" +imep  }, { left: 302, top: 387, message: "传感器类型：孔隙水压力" + "<br>时间:" + a1[0].sm + "<br>孔隙水压力:" + a[0].value.toFixed(4)+"<br>" +imst }, { left: 335, top: 387, message: "传感器类型：内部位移" + "<br>时间:" + c2[0].sm + "<br>内部位移:" + Dm.toFixed(4)+"<br>" +imdm },
+     { left: 460, top: 390, message: "传感器类型：土压力" + "<br>时间:" + b1[0].sm + "<br>土压力：" + b[0].value + "<br>" + imep }, { left: 492, top: 390, message: "传感器类型：孔隙水压力" + "<br>时间:" + a1[0].sm + "<br>孔隙水压力:" + a[0].value.toFixed(4) + "<br>" + imst }, { left: 522, top: 390, message: "传感器类型：内部位移" + "<br>时间:" + c2[0].sm + "<br>内部位移:" + Dm.toFixed(4) + "<br>" + imdm },
+	{ left: 525, top: 355, message: "传感器类型：土壤含水率" + "<br>时间:" + d1[0].sm + "<br>土壤含水率:" + d[0].value + "<br>" + imsmc }, { left: 555, top: 360, message: "传感器类型：GPS" + "<br>时间:" + e3[0].sm + "<br>表面位移: " + Mp.toFixed(4) + "<br>" + immp }, { left: 590, top: 357, message: "传感器类型：湿度" + "<br>时间:" + f1[0].sm + "<br>湿度:" + f[0].value + "<br>" + imhum }, { left: 624, top: 357, message: "传感器类型：降雨量" + "<br>时间:" + g1[0].sm + "<br>降雨量:" + g[0].value + "<br>" + imrain }, { left: 661, top: 358, message: "传感器类型：温度" + "<br>时间:" + h1[0].sm + "<br>温度:" + h[0].value + "<br>" + imtmp },
+	{ left: 650, top: 395, message: "传感器类型：土压力" + "<br>时间:" + b1[0].sm + "<br>土压力：" + b[0].value + "<br>" + imep }, { left: 682, top: 395, message: "传感器类型：孔隙水压力" + "<br>时间:" + a1[0].sm + "<br>孔隙水压力:" + a[0].value.toFixed(4) + "<br>" + imst }, { left: 714, top: 395, message: "传感器类型：内部位移" + "<br>时间:" + c2[0].sm + "<br>内部位移:" + Dm.toFixed(4) + "<br>" + imdm },
+	{ left: 843, top: 395, message: "传感器类型：土压力" + "<br>时间:" + b1[0].sm + "<br>土压力：" + b[0].value + "<br>" + imep }, { left: 875, top: 392, message: "传感器类型：孔隙水压力" + "<br>时间:" + a1[0].sm + "<br>孔隙水压力:" + a[0].value.toFixed(4) + "<br>" + imst }, { left: 907, top: 395, message: "传感器类型：内部位移" + "<br>时间:" + c2[0].sm + "<br>内部位移:" + Dm.toFixed(4) + "<br>" + imdm }, ];
+	$.sign.loadingSign(data);//载入标记数据
+</script>
+</body>
+</html>
+ 

@@ -1,0 +1,33 @@
+﻿@charset "utf-8";
+.signIndex {
+	width:0px;
+	height:0px;
+	border:rgba(251,251,251,1) 16px solid;
+	position:absolute;
+	z-index:103
+}
+.hintBox {
+	margin:0;
+	position:absolute;
+	min-width:30px;
+	max-width:240px;
+	max-height:300px;
+	min-height:100px;
+	z-index:101;
+	background:rgba(251,251,251,1);
+	color:#000;
+	line-height:20px;
+	font-size:14px;
+    padding:2px 2px 2px 2px;
+	text-align:center
+  
+}
+.triangle-down {
+	position:absolute;
+	width:0;
+	height:0;
+	border-left:10px solid transparent;
+	border-right:10px solid transparent;
+	border-top:10px solid rgba(251,251,251,1);
+	z-index:101
+}
